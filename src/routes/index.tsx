@@ -1,24 +1,63 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { DeliProvider } from "@/lib/deli-store";
+import { Header } from "@/components/deli/Header";
+import { Hero } from "@/components/deli/Hero";
+import {
+  MenuSection,
+  AboutSection,
+  ExperienceSection,
+  ReviewsSection,
+  LocationSection,
+  FinalCTA,
+  Footer,
+} from "@/components/deli/Sections";
+import { BottomNav } from "@/components/deli/BottomNav";
+import {
+  OrderDrawer,
+  CartDrawer,
+  WatchDishModal,
+  SearchOverlay,
+  VoiceAssistant,
+} from "@/components/deli/Overlays";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Deli Belly — Pure Veg Restaurant in PCMC";
+const description =
+  "An immersive digital menu from Deli Belly, a pure vegetarian restaurant in PCMC, Maharashtra. Explore signature dishes, ratings and order your favourites.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "restaurant" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <DeliProvider>
+      <Header />
+      <main className="pb-16 md:pb-0">
+        <Hero />
+        <MenuSection />
+        <AboutSection />
+        <ExperienceSection />
+        <ReviewsSection />
+        <LocationSection />
+        <FinalCTA />
+        <Footer />
+      </main>
+      <BottomNav />
+      <VoiceAssistant />
+      <OrderDrawer />
+      <CartDrawer />
+      <WatchDishModal />
+      <SearchOverlay />
+    </DeliProvider>
   );
 }

@@ -1,50 +1,48 @@
-import { Home, UtensilsCrossed, BadgePercent, ShoppingBag, User } from "lucide-react";
+import { Home, UtensilsCrossed, Calendar, ShoppingBag, MapPin } from "lucide-react";
 import { useDeli } from "@/lib/deli-store";
 
 export function BottomNav() {
-  const { cartCount, setCartOpen, setNavOpen } = useDeli();
+  const { cartCount, setCartOpen, setReservationOpen } = useDeli();
 
-  const item = "flex flex-1 flex-col items-center gap-1 py-3 text-[10px] tracking-[0.08em]";
+  const itemClass =
+    "flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-[10px] font-medium tracking-[0.06em] text-muted-foreground transition-colors hover:text-ink active:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
 
   return (
     <nav
-      aria-label="Mobile navigation"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-card/95 backdrop-blur md:hidden"
+      aria-label="Mobile Bottom Navigation"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-border/80 bg-card/95 backdrop-blur-md md:hidden shadow-lift"
     >
-      <div className="mx-auto flex max-w-[600px]">
-        <a href="#home" className={`${item} text-ink`}>
-          <Home className="size-5" strokeWidth={1.5} />
-          Home
+      <div className="mx-auto flex max-w-[600px] items-center justify-around">
+        <a href="#home" className={itemClass}>
+          <Home className="size-5" strokeWidth={1.6} />
+          <span>Home</span>
         </a>
-        <a href="#menu" className={`${item} text-muted-foreground`}>
-          <UtensilsCrossed className="size-5" strokeWidth={1.5} />
-          Menu
+        <a href="#menu" className={itemClass}>
+          <UtensilsCrossed className="size-5" strokeWidth={1.6} />
+          <span>Menu</span>
         </a>
-        <a href="#order" className={`${item} text-muted-foreground`}>
-          <BadgePercent className="size-5" strokeWidth={1.5} />
-          Offers
-        </a>
+        <button type="button" onClick={() => setReservationOpen(true)} className={itemClass}>
+          <Calendar className="size-5" strokeWidth={1.6} />
+          <span>Reserve</span>
+        </button>
         <button
           type="button"
           onClick={() => setCartOpen(true)}
-          className={`${item} relative text-muted-foreground`}
+          className={`${itemClass} relative`}
+          aria-label={`Cart, ${cartCount} items`}
         >
-          <ShoppingBag className="size-5" strokeWidth={1.5} />
+          <ShoppingBag className="size-5" strokeWidth={1.6} />
           {cartCount > 0 && (
-            <span className="absolute right-1/4 top-2 flex size-4 items-center justify-center rounded-full bg-accent text-[9px] font-bold text-accent-foreground">
+            <span className="absolute right-3 top-1.5 flex size-4 items-center justify-center rounded-full bg-accent text-[9px] font-bold text-accent-foreground shadow-sm">
               {cartCount}
             </span>
           )}
-          Cart
+          <span>Cart</span>
         </button>
-        <button
-          type="button"
-          onClick={() => setNavOpen(true)}
-          className={`${item} text-muted-foreground`}
-        >
-          <User className="size-5" strokeWidth={1.5} />
-          Account
-        </button>
+        <a href="#contact" className={itemClass}>
+          <MapPin className="size-5" strokeWidth={1.6} />
+          <span>Visit</span>
+        </a>
       </div>
     </nav>
   );

@@ -5,7 +5,7 @@ import { useDeli, inr } from "@/lib/deli-store";
 import { useReducedMotionPref } from "@/lib/use-reduced-motion";
 
 const AUTOPLAY_MS = 6000;
-const RESUME_MS = 12000;
+const RESUME_MS = 10000;
 
 export function DishCarousel() {
   const { activeIndex, goTo, next, prev } = useDeli();
@@ -15,6 +15,7 @@ export function DishCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const dragStart = useRef<number | null>(null);
 
+  // Autoplay interval
   useEffect(() => {
     const id = setInterval(() => {
       if (!pausedRef.current) next();
@@ -22,6 +23,7 @@ export function DishCarousel() {
     return () => clearInterval(id);
   }, [next]);
 
+  // Scroll active dish into center view
   useEffect(() => {
     const el = trackRef.current?.querySelector<HTMLElement>(`[data-index="${activeIndex}"]`);
     el?.scrollIntoView({
@@ -31,7 +33,7 @@ export function DishCarousel() {
     });
   }, [activeIndex, reduced]);
 
-  const pause = () => {
+  const pauseTemporary = () => {
     pausedRef.current = true;
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
     resumeTimer.current = setTimeout(() => {
@@ -41,18 +43,21 @@ export function DishCarousel() {
 
   return (
     <div
-      className="w-full"
+      className="w-full select-none"
       onMouseEnter={() => (pausedRef.current = true)}
       onMouseLeave={() => (pausedRef.current = false)}
-      onFocusCapture={pause}
+      onFocusCapture={pauseTemporary}
       onPointerDown={(e) => {
-        pause();
+        pauseTemporary();
         dragStart.current = e.clientX;
       }}
       onPointerUp={(e) => {
         if (dragStart.current === null) return;
         const dx = e.clientX - dragStart.current;
-        if (Math.abs(dx) > 60) (dx < 0 ? next : prev)();
+        if (Math.abs(dx) > 40) {
+          if (dx < 0) next();
+          else prev();
+        }
         dragStart.current = null;
       }}
     >
@@ -60,30 +65,32 @@ export function DishCarousel() {
         <button
           type="button"
           onClick={() => {
-            pause();
+            pauseTemporary();
             prev();
           }}
           aria-label="Previous dish"
-          className="hidden size-12 shrink-0 items-center justify-center rounded-full border border-border bg-card text-ink shadow-soft transition-colors hover:bg-secondary md:flex"
+          className="hidden size-12 shrink-0 items-center justify-center rounded-full border border-border bg-card/90 text-ink shadow-soft transition-all hover:bg-card hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:flex"
         >
-          <ChevronLeft className="size-5" strokeWidth={1.5} />
+          <ChevronLeft className="size-5" strokeWidth={1.8} />
         </button>
 
         <div
           ref={trackRef}
           role="tablist"
-          aria-label="Featured dishes"
+          aria-label="Featured signature dishes"
+          tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === "ArrowRight") {
-              pause();
+              e.preventDefault();
+              pauseTemporary();
               next();
-            }
-            if (e.key === "ArrowLeft") {
-              pause();
+            } else if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              pauseTemporary();
               prev();
             }
           }}
-          className="flex flex-1 snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex flex-1 snap-x snap-mandatory gap-3 overflow-x-auto py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {dishes.map((dish, i) => {
             const active = i === activeIndex;
@@ -93,15 +100,15 @@ export function DishCarousel() {
                 data-index={i}
                 role="tab"
                 aria-selected={active}
-                aria-label={`Show ${dish.name}`}
+                aria-label={`Show ${dish.name}, price ${inr(dish.price)}`}
                 onClick={() => {
-                  pause();
+                  pauseTemporary();
                   goTo(i);
                 }}
-                className={`flex min-w-[168px] snap-center items-center gap-3 rounded-2xl border px-3 py-3 text-left transition-all duration-500 ${
+                className={`flex min-w-[175px] snap-center items-center gap-3 rounded-2xl border px-3.5 py-3 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                   active
-                    ? "scale-[1.04] border-transparent bg-ink text-ink-foreground shadow-lift"
-                    : "border-border bg-card/70 text-ink hover:bg-card"
+                    ? "scale-[1.03] border-transparent bg-ink text-ink-foreground shadow-lift ring-2 ring-accent/30"
+                    : "border-border/60 bg-card/80 text-ink hover:border-border hover:bg-card"
                 }`}
               >
                 <img
@@ -110,14 +117,16 @@ export function DishCarousel() {
                   loading="lazy"
                   width={112}
                   height={112}
-                  className="size-12 shrink-0 rounded-full object-cover"
+                  className="size-12 shrink-0 rounded-full object-cover shadow-sm"
                 />
-                <span className="min-w-0">
-                  <span className="block truncate text-[13px] font-medium leading-tight">
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-[13px] font-semibold leading-snug">
                     {dish.name}
                   </span>
                   <span
-                    className={`block text-[11px] ${active ? "text-ink-foreground/60" : "text-muted-foreground"}`}
+                    className={`block text-[11px] font-medium ${
+                      active ? "text-ink-foreground/75" : "text-muted-foreground"
+                    }`}
                   >
                     {inr(dish.price)}
                   </span>
@@ -130,13 +139,13 @@ export function DishCarousel() {
         <button
           type="button"
           onClick={() => {
-            pause();
+            pauseTemporary();
             next();
           }}
           aria-label="Next dish"
-          className="hidden size-12 shrink-0 items-center justify-center rounded-full border border-border bg-card text-ink shadow-soft transition-colors hover:bg-secondary md:flex"
+          className="hidden size-12 shrink-0 items-center justify-center rounded-full border border-border bg-card/90 text-ink shadow-soft transition-all hover:bg-card hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:flex"
         >
-          <ChevronRight className="size-5" strokeWidth={1.5} />
+          <ChevronRight className="size-5" strokeWidth={1.8} />
         </button>
       </div>
     </div>

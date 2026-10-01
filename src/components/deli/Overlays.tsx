@@ -360,7 +360,7 @@ export function VoiceAssistant() {
         onClick={() => setOpen((v) => !v)}
         aria-label="Open the craving assistant"
         aria-expanded={open}
-        className="fixed bottom-24 right-5 z-40 flex size-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lift transition-transform hover:scale-105 md:bottom-8"
+        className="fixed bottom-24 right-5 z-40 flex size-14 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lift transition-transform hover:scale-105 md:bottom-28"
       >
         <Mic className="size-5" strokeWidth={1.6} />
       </button>

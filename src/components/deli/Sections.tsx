@@ -4,7 +4,6 @@ import {
   Flame,
   Heart,
   Plus,
-  Quote,
   MapPin,
   Phone,
   ArrowUpRight,
@@ -15,7 +14,7 @@ import {
 import aboutKitchen from "@/assets/about-kitchen.jpg";
 import ctaSpread from "@/assets/cta-spread.jpg";
 import ambience from "@/assets/ambience-interior.jpg";
-import { dishes, menuCategories, placeholderReviews, restaurant, ratingsNote } from "@/data/dishes";
+import { dishes, menuCategories, restaurant, ratingsNote } from "@/data/dishes";
 import { useDeli, inr } from "@/lib/deli-store";
 
 export function MenuSection() {
@@ -248,52 +247,6 @@ export function ExperienceSection() {
           ))}
         </div>
       </div>
-    </section>
-  );
-}
-
-export function ReviewsSection() {
-  return (
-    <section id="reviews" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-      <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-end">
-        <div>
-          <p className="eyebrow">Guest Testimonials</p>
-          <h2 className="mt-3 font-display text-[clamp(1.85rem,4vw,3rem)] font-light tracking-[-0.03em] text-ink">
-            What diners <span className="font-extrabold">say.</span>
-          </h2>
-        </div>
-        <span className="rounded-full border border-border bg-card px-3 py-1 text-[11px] font-medium text-muted-foreground">
-          Sample Guest Feedback
-        </span>
-      </div>
-
-      <div className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {placeholderReviews.map((r) => (
-          <figure
-            key={r.id}
-            className="min-w-[290px] max-w-[400px] flex-1 snap-start rounded-[28px] border border-border/70 bg-card p-7 shadow-soft transition-all hover:border-border"
-          >
-            <div className="flex items-center justify-between">
-              <Quote className="size-7 text-accent" strokeWidth={1.4} />
-              <span className="text-xs text-accent">{r.source}</span>
-            </div>
-            <blockquote className="mt-5 text-[15px] leading-relaxed text-ink">
-              "{r.quote}"
-            </blockquote>
-            <figcaption className="mt-6 border-t border-border/40 pt-4 flex items-center justify-between">
-              <div>
-                <span className="block text-sm font-bold text-ink">{r.name}</span>
-                <span className="text-[11px] text-muted-foreground">Deli Belly Guest</span>
-              </div>
-              <span className="text-sm text-accent">{"★".repeat(r.rating)}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <p className="mt-6 text-xs text-muted-foreground">
-        Sample guest feedback shown for visual reference — ratings sync with current food platform
-        listings.
-      </p>
     </section>
   );
 }

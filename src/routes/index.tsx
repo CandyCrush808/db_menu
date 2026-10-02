@@ -6,7 +6,6 @@ import {
   MenuSection,
   AboutSection,
   ExperienceSection,
-  ReviewsSection,
   LocationSection,
   FinalCTA,
   Footer,
@@ -91,7 +90,6 @@ function Index() {
         <MenuSection />
         <AboutSection />
         <ExperienceSection />
-        <ReviewsSection />
         <LocationSection />
         <FinalCTA />
         <Footer />

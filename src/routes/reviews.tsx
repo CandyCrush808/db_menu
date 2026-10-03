@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import "@/styles/reviews.css";
 import { DeliProvider } from "@/lib/deli-store";
 import { Header } from "@/components/deli/Header";
 import { Footer } from "@/components/deli/Sections";

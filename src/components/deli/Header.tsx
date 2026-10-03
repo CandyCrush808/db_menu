@@ -5,12 +5,12 @@ import { useDeli } from "@/lib/deli-store";
 import { restaurant } from "@/data/dishes";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Menu", href: "#menu" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Visit", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Menu", href: "/#menu" },
+  { label: "About", href: "/#about" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Visit", href: "/#contact" },
 ];
 
 export function Header() {
@@ -49,7 +49,7 @@ export function Header() {
       >
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-10">
           <a
-            href="#home"
+            href="/"
             className="group flex flex-col leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-lg"
           >
             <span className="font-display text-lg font-extrabold tracking-[-0.03em] text-ink md:text-xl">

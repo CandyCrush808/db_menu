@@ -221,34 +221,92 @@ export const menuCategories = [
 
 /**
  * SAMPLE DINER REVIEWS — clearly identified sample testimonials until live API reviews are linked.
+ * The section supports a compact 6-review showcase and can expand to 12 without changing the layout.
  */
 export const placeholderReviews = [
   {
     id: "r1",
     isPlaceholder: true,
+    customerName: "Anand S.",
+    name: "Anand S.",
+    review:
+      "The DB Special Pav Bhaji is exactly what you hope for — buttery, piping hot and full of authentic street-style flavour.",
     quote:
       "The DB Special Pav Bhaji is exactly what you hope for — buttery, piping hot and full of authentic street-style flavour.",
-    name: "Anand S.",
+    dish: "DB Special Pav Bhaji",
+    date: "April 2025",
     rating: 5,
     source: "Verified Diner Review",
   },
   {
     id: "r2",
     isPlaceholder: true,
+    customerName: "Pooja M.",
+    name: "Pooja M.",
+    review:
+      "Lovely pure veg spread. The Soya Chaap Tikka Biryani had a proper smoky tandoori aroma without feeling heavy.",
     quote:
       "Lovely pure veg spread. The Soya Chaap Tikka Biryani had a proper smoky tandoori aroma without feeling heavy.",
-    name: "Pooja M.",
+    dish: "Soya Chaap Tikka Biryani",
+    date: "March 2025",
     rating: 5,
     source: "Verified Diner Review",
   },
   {
     id: "r3",
     isPlaceholder: true,
+    customerName: "Rohan K.",
+    name: "Rohan K.",
+    review:
+      "Warm ambiance with food that tastes consistently fresh. The Dal Makhani is rich, velvety and worth repeating.",
     quote:
       "Warm ambiance with food that tastes consistently fresh. The Dal Makhani is rich, velvety and worth repeating.",
-    name: "Rohan K.",
+    dish: "Dal Makhani",
+    date: "February 2025",
     rating: 4,
     source: "Verified Diner Review",
+  },
+  {
+    id: "r4",
+    isPlaceholder: true,
+    customerName: "Neha V.",
+    name: "Neha V.",
+    review:
+      "The Paneer Tikka Kaathi Roll had the perfect balance of char, spice and softness — a repeat order for sure.",
+    quote:
+      "The Paneer Tikka Kaathi Roll had the perfect balance of char, spice and softness — a repeat order for sure.",
+    dish: "Paneer Tikka Kaathi Roll",
+    date: "January 2025",
+    rating: 5,
+    source: "Sample Guest Feedback",
+  },
+  {
+    id: "r5",
+    isPlaceholder: true,
+    customerName: "Kunal P.",
+    name: "Kunal P.",
+    review:
+      "Family dinner felt easy and comfortable, and the Chole Bhature tasted just like a home-style Punjabi favourite.",
+    quote:
+      "Family dinner felt easy and comfortable, and the Chole Bhature tasted just like a home-style Punjabi favourite.",
+    dish: "Chole Bhature",
+    date: "January 2025",
+    rating: 4,
+    source: "Sample Guest Feedback",
+  },
+  {
+    id: "r6",
+    isPlaceholder: true,
+    customerName: "Shreya B.",
+    name: "Shreya B.",
+    review:
+      "The service was warm and the menu felt thoughtfully curated. Dahi Kebab and Afghani Soya Chaap stood out immediately.",
+    quote:
+      "The service was warm and the menu felt thoughtfully curated. Dahi Kebab and Afghani Soya Chaap stood out immediately.",
+    dish: "Afghani Soya Chaap",
+    date: "December 2024",
+    rating: 5,
+    source: "Sample Guest Feedback",
   },
 ];
 
@@ -268,6 +326,7 @@ export const restaurant = {
   orderUrl: "",
   instagram: "",
   facebook: "",
+  youtube: "",
 };
 
 export const ratingsNote =

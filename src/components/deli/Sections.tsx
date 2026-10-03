@@ -4,18 +4,21 @@ import {
   Flame,
   Heart,
   Plus,
-  Quote,
   MapPin,
   Phone,
+  Instagram,
+  Facebook,
+  Youtube,
   ArrowUpRight,
   MessageCircle,
   Calendar,
   Clock,
 } from "lucide-react";
-import aboutKitchen from "@/assets/about-kitchen.jpg";
+import aboutKitchen from "@/assets/kitchen.mp4";
 import ctaSpread from "@/assets/cta-spread.jpg";
 import ambience from "@/assets/ambience-interior.jpg";
-import { dishes, menuCategories, placeholderReviews, restaurant, ratingsNote } from "@/data/dishes";
+import footerbg from "@/assets/footer.png";
+import { dishes, menuCategories, restaurant, ratingsNote } from "@/data/dishes";
 import { useDeli, inr } from "@/lib/deli-store";
 
 export function MenuSection() {
@@ -174,14 +177,19 @@ export function AboutSection() {
         </div>
 
         <div className="relative">
-          <img
+          <video
             src={aboutKitchen}
-            alt="A chef plating a vegetarian dish at Deli Belly"
-            loading="lazy"
-            width={1200}
-            height={1500}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls={false}
+            aria-label="A chef plating a vegetarian dish at Deli Belly"
             className="aspect-[4/5] w-full rounded-[28px] object-cover shadow-lift"
-          />
+          >
+            Your browser does not support the video tag.
+          </video>
+
           <div className="absolute -bottom-6 -left-6 hidden sm:flex items-center gap-3 rounded-2xl border border-border bg-card p-4 shadow-lift">
             <div className="flex size-12 items-center justify-center rounded-xl bg-veg/10 text-veg">
               <Leaf className="size-6" strokeWidth={1.8} />
@@ -248,52 +256,6 @@ export function ExperienceSection() {
           ))}
         </div>
       </div>
-    </section>
-  );
-}
-
-export function ReviewsSection() {
-  return (
-    <section id="reviews" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32">
-      <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-end">
-        <div>
-          <p className="eyebrow">Guest Testimonials</p>
-          <h2 className="mt-3 font-display text-[clamp(1.85rem,4vw,3rem)] font-light tracking-[-0.03em] text-ink">
-            What diners <span className="font-extrabold">say.</span>
-          </h2>
-        </div>
-        <span className="rounded-full border border-border bg-card px-3 py-1 text-[11px] font-medium text-muted-foreground">
-          Sample Guest Feedback
-        </span>
-      </div>
-
-      <div className="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {placeholderReviews.map((r) => (
-          <figure
-            key={r.id}
-            className="min-w-[290px] max-w-[400px] flex-1 snap-start rounded-[28px] border border-border/70 bg-card p-7 shadow-soft transition-all hover:border-border"
-          >
-            <div className="flex items-center justify-between">
-              <Quote className="size-7 text-accent" strokeWidth={1.4} />
-              <span className="text-xs text-accent">{r.source}</span>
-            </div>
-            <blockquote className="mt-5 text-[15px] leading-relaxed text-ink">
-              "{r.quote}"
-            </blockquote>
-            <figcaption className="mt-6 border-t border-border/40 pt-4 flex items-center justify-between">
-              <div>
-                <span className="block text-sm font-bold text-ink">{r.name}</span>
-                <span className="text-[11px] text-muted-foreground">Deli Belly Guest</span>
-              </div>
-              <span className="text-sm text-accent">{"★".repeat(r.rating)}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-      <p className="mt-6 text-xs text-muted-foreground">
-        Sample guest feedback shown for visual reference — ratings sync with current food platform
-        listings.
-      </p>
     </section>
   );
 }
@@ -422,7 +384,7 @@ export function FinalCTA() {
         className="absolute inset-0 -z-20 size-full object-cover"
       />
       <div className="absolute inset-0 -z-10 bg-ink/75 backdrop-blur-[1px]" aria-hidden="true" />
-      <div className="mx-auto max-w-[1400px] px-6 py-28 text-center md:px-10 md:py-36">
+      <div className="mx-auto max-w-[1400px] px-6 py-28 text-center md:px-10 md:pt-36 md:pb-20">
         <p className="eyebrow text-accent">Pure Veg Dining</p>
         <h2 className="mx-auto mt-3 max-w-[20ch] font-display text-[clamp(2.25rem,6vw,4.5rem)] leading-none tracking-[-0.03em] text-ink-foreground">
           <span className="font-light block">WHAT ARE YOU</span>{" "}
@@ -461,61 +423,133 @@ export function FinalCTA() {
 }
 
 export function Footer() {
+  const socialLinks = [
+    { label: "Instagram", href: restaurant.instagram, Icon: Instagram },
+    { label: "Facebook", href: restaurant.facebook, Icon: Facebook },
+    { label: "YouTube", href: restaurant.youtube, Icon: Youtube },
+  ];
+
   return (
-    <footer className="mx-auto max-w-[1400px] px-6 py-16 md:px-10 border-t border-border/40">
-      <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-        <div className="max-w-[320px]">
-          <p className="font-display text-xl font-extrabold tracking-[-0.03em] text-ink">
-            {restaurant.name}
-          </p>
-          <p className="eyebrow mt-1.5">{restaurant.subtitle}</p>
-          <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
-            {restaurant.addressLine}
-          </p>
-        </div>
+    <footer className="relative isolate overflow-hidden border-t border-border/40 bg-background text-ink">
+      <img
+        src={footerbg}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        width={900}
+        height={300}
+        className="absolute bottom-0 right-0 top-auto left-auto -z-20 h-[190px] w-[570px] max-w-none object-contain object-right-bottom md:inset-0 md:size-full md:w-full md:max-w-full md:object-cover"
+      />
+      <div className="relative z-10 mx-auto flex min-h-[700px] max-w-[1400px] flex-col justify-between px-6 pb-40 pt-36 sm:px-8 md:min-h-[560px] md:px-10 md:pb-10 md:pt-20">
+        <div className="w-full max-w-[900px] lg:w-[70%]">
+          <div className="flex items-center gap-4">
+            <div>
+              <p className="font-display text-3xl font-extrabold leading-none text-ink sm:text-4xl">
+                {restaurant.name.toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase())}
+              </p>
+              <p className="eyebrow mt-2 text-[10px] font-semibold tracking-[0.16em]">
+                PURE VEG <span aria-hidden="true">·</span> REAL FLAVOURS
+              </p>
+            </div>
+          </div>
 
-        <nav className="flex flex-wrap gap-x-8 gap-y-3" aria-label="Footer Navigation">
-          {["Home", "Menu", "About", "Experience", "Reviews", "Contact"].map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="text-xs font-medium tracking-[0.1em] text-muted-foreground uppercase transition-colors hover:text-ink"
-            >
-              {l}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex flex-col gap-3">
-          <p className="eyebrow">Connect</p>
-          <div className="flex gap-2">
-            <a
-              href={restaurant.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Google Maps"
-              className="flex size-10 items-center justify-center rounded-full border border-border text-xs text-muted-foreground transition-colors hover:bg-secondary hover:text-ink"
-            >
-              MAP
-            </a>
-            {restaurant.phone && (
+          <div className="mt-12 grid gap-9 sm:grid-cols-[0.7fr_1.3fr] lg:grid-cols-[0.65fr_1.25fr_0.8fr] lg:gap-8">
+            <nav className="flex flex-col items-start gap-3" aria-label="Footer navigation">
+              <p className="eyebrow mb-1">Explore</p>
               <a
-                href={`tel:${restaurant.phone}`}
-                aria-label="Phone"
-                className="flex size-10 items-center justify-center rounded-full border border-border text-xs text-muted-foreground transition-colors hover:bg-secondary hover:text-ink"
+                href="#home"
+                className="w-fit text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-ink"
               >
-                TEL
+                Home
               </a>
-            )}
+              <a
+                href="#about"
+                className="w-fit text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-ink"
+              >
+                About
+              </a>
+              <a
+                href="#menu"
+                className="w-fit text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-ink"
+              >
+                Menu
+              </a>
+              {restaurant.mapsUrl && (
+                <a
+                  href={restaurant.mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Find Deli Belly reviews on Google Maps"
+                  className="w-fit text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-ink"
+                >
+                  Reviews
+                </a>
+              )}
+            </nav>
+
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow">Visit & Contact</p>
+              {restaurant.mapsUrl && (
+                <a
+                  href={restaurant.mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${restaurant.name} location in Google Maps`}
+                  className="group flex max-w-sm items-start gap-3 text-sm leading-relaxed text-muted-foreground transition-colors hover:text-ink"
+                >
+                  <MapPin className="mt-0.5 size-5 shrink-0 text-ink" strokeWidth={1.8} />
+                  <span>
+                    <span className="block font-semibold text-ink">{restaurant.locality}</span>
+                    <span>{restaurant.addressLine}</span>
+                  </span>
+                  <ArrowUpRight className="mt-0.5 size-4 shrink-0 opacity-0 transition-opacity group-hover:opacity-100" />
+                </a>
+              )}
+              {restaurant.phone && (
+                <a
+                  href={`tel:${restaurant.phone.replace(/[^\d+]/g, "")}`}
+                  className="flex w-fit items-center gap-3 text-sm font-semibold text-muted-foreground transition-colors hover:text-ink"
+                >
+                  <Phone className="size-5 shrink-0 text-ink" strokeWidth={1.8} />
+                  <span>{restaurant.phone}</span>
+                </a>
+              )}
+            </div>
+
+            <div className="sm:col-span-2 lg:col-span-1">
+              <p className="eyebrow mb-3">Follow</p>
+              <div className="flex items-center gap-2" role="group" aria-label="Social media">
+                {socialLinks.map(({ label, href, Icon }) =>
+                  href ? (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={label}
+                      className="flex size-11 items-center justify-center rounded-full border border-ink/25 text-ink transition-all duration-200 hover:scale-105 hover:border-ink hover:bg-background/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    >
+                      <Icon className="size-5" strokeWidth={1.8} aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <span
+                      key={label}
+                      role="img"
+                      aria-label={`${label} link not configured`}
+                      className="flex size-11 items-center justify-center rounded-full border border-ink/20 text-ink/60"
+                    >
+                      <Icon className="size-5" strokeWidth={1.8} aria-hidden="true" />
+                    </span>
+                  ),
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-12 pt-6 border-t border-border/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-muted-foreground">
-        <p>{ratingsNote}</p>
-        <p>
-          © {new Date().getFullYear()} {restaurant.name} • All rights reserved
-        </p>
+        <div className="mt-10 max-w-[900px] border-t border-ink/20 pt-5 text-xs text-muted-foreground lg:w-[70%]">
+          © 2026 {restaurant.name}. All rights reserved.
+        </div>
       </div>
     </footer>
   );

@@ -13,8 +13,6 @@ export function Hero() {
   const [tab, setTab] = useState<"overview" | "ingredients">("overview");
   const reduced = useReducedMotionPref();
 
-  const slide = (d: number) => (reduced ? 0 : d * 50);
-
   return (
     <section id="home" className="relative isolate min-h-screen overflow-hidden">
       <img
@@ -32,26 +30,35 @@ export function Hero() {
 
       <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-between px-6 pb-12 pt-28 md:px-10 md:pt-36">
         <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-          {/* Circular Organic Food Image */}
           <div className="relative mx-auto aspect-square w-full max-w-[280px] sm:max-w-[380px] lg:max-w-[520px]">
             <div
               className="absolute inset-0 rounded-full bg-accent/20 blur-3xl"
               aria-hidden="true"
             />
-            <AnimatePresence mode="popLayout" initial={false}>
-              <motion.img
-                key={activeDish.id}
-                src={activeDish.image}
-                alt={activeDish.name}
-                width={1024}
-                height={1024}
-                initial={{ opacity: 0, x: slide(direction), scale: reduced ? 1 : 0.95 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: slide(-direction), scale: reduced ? 1 : 0.98 }}
-                transition={{ duration: reduced ? 0.2 : 0.5, ease: EASE }}
-                className="relative size-full rounded-full object-cover shadow-lift"
-              />
-            </AnimatePresence>
+            <div style={{ perspective: 1200 }} className="relative size-full">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.img
+                  key={activeDish.id}
+                  src={activeDish.image}
+                  alt={activeDish.name}
+                  width={1024}
+                  height={1024}
+                  initial={{
+                    opacity: 0,
+                    scale: reduced ? 0.99 : 0.96,
+                    x: reduced ? 0 : direction * 24,
+                  }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{
+                    opacity: 0,
+                    scale: reduced ? 0.99 : 0.97,
+                    x: reduced ? 0 : -direction * 24,
+                  }}
+                  transition={{ duration: reduced ? 0.18 : 0.42, ease: EASE }}
+                  className="relative size-full rounded-full object-cover shadow-lift"
+                />
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Dish Information */}

@@ -6,11 +6,9 @@ import { restaurant } from "@/data/dishes";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Menu", href: "#menu" },
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
+  { label: "Menu", href: "#menu" },
   { label: "Reviews", href: "#reviews" },
-  { label: "Visit", href: "#contact" },
 ];
 
 export function Header() {

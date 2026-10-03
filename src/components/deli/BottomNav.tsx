@@ -1,4 +1,4 @@
-import { Home, UtensilsCrossed, Calendar, ShoppingBag, MapPin } from "lucide-react";
+import { Home, UtensilsCrossed, Calendar, ShoppingBag } from "lucide-react";
 import { useDeli } from "@/lib/deli-store";
 
 export function BottomNav() {
@@ -39,10 +39,6 @@ export function BottomNav() {
           )}
           <span>Cart</span>
         </button>
-        <a href="#contact" className={itemClass}>
-          <MapPin className="size-5" strokeWidth={1.6} />
-          <span>Visit</span>
-        </a>
       </div>
     </nav>
   );

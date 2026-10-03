@@ -1,0 +1,1 @@
+export function ReviewAccents(){return <div aria-hidden="true" className="pointer-events-none absolute inset-0"><span className="review-accent review-accent-1"/><span className="review-accent review-accent-2"/><span className="review-accent review-accent-3"/><span className="review-accent review-accent-4"/></div>};

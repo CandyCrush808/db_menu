@@ -1,0 +1,373 @@
+.review-page {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}
+.review-hero {
+  position: relative;
+  display: flex;
+  min-height: 92vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6rem 1.5rem;
+  text-align: center;
+}
+.review-display-xl {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  font-size: clamp(3.5rem, 13vw, 11rem);
+}
+.review-display-lg {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-size: clamp(2.25rem, 7vw, 5.5rem);
+}
+.review-display-sub {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: clamp(1rem, 2.6vw, 1.9rem);
+  color: color-mix(in oklab, var(--color-foreground) 80%, transparent);
+}
+.text-accent {
+  color: var(--color-accent);
+}
+.review-lede {
+  max-width: 38rem;
+  margin-top: 1.75rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-muted-foreground);
+}
+.review-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--color-muted-foreground);
+}
+.review-scroll-track {
+  display: block;
+  width: 1px;
+  height: 3.5rem;
+  background: var(--color-border);
+  overflow: hidden;
+}
+.review-scroll-line {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent);
+}
+.review-scroll em {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--color-muted-foreground);
+}
+.review-hero-accent {
+  position: absolute;
+  width: clamp(2rem, 3.4vw, 3rem);
+  opacity: 0.55;
+}
+.review-hero-accent-1 {
+  left: 8%;
+  top: 22%;
+}
+.review-hero-accent-2 {
+  right: 9%;
+  top: 30%;
+}
+.review-hero-accent-3 {
+  left: 14%;
+  bottom: 18%;
+}
+.review-journey-scene {
+  background: var(--color-background);
+}
+.review-journey-frame {
+  position: absolute;
+  inset: 0;
+  margin-inline: auto;
+  width: min(100%, 100rem);
+}
+.review-journey-title {
+  position: absolute;
+  left: 50%;
+  top: 3.5%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.1rem, 3.4vw, 2.6rem);
+  white-space: nowrap;
+  color: var(--color-muted-foreground);
+}
+.review-path-guide {
+  stroke: color-mix(in oklab, var(--color-foreground) 22%, transparent);
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 14;
+  vector-effect: non-scaling-stroke;
+}
+.review-path-progress {
+  stroke: var(--color-accent);
+  stroke-width: 2.75;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.review-journey-scene circle[data-stop] {
+  fill: var(--color-card);
+  stroke: color-mix(in oklab, var(--color-foreground) 28%, transparent);
+  stroke-width: 1.5;
+}
+.review-journey-scene circle[data-stop].stop-reached {
+  fill: color-mix(in oklab, var(--color-accent) 70%, transparent);
+}
+.review-journey-scene circle[data-stop].stop-active {
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
+}
+.review-auto-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 22px oklch(0 0 0 / 0.22));
+}
+.review-auto-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  filter: drop-shadow(0 16px 22px oklch(0 0 0 / 0.22));
+}
+.review-card {
+  position: relative;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1.4rem;
+  padding: 1.4rem 1.5rem 1.5rem;
+  box-shadow: var(--shadow-soft);
+  transform: rotate(var(--tilt, 0deg));
+}
+.review-card:after {
+  content: "";
+  position: absolute;
+  inset: 0.4rem;
+  border: 1px dashed color-mix(in oklab, var(--color-foreground) 12%, transparent);
+  border-radius: 1rem;
+  pointer-events: none;
+}
+.review-card-tape {
+  position: absolute;
+  left: 50%;
+  top: -0.7rem;
+  width: 5.5rem;
+  height: 1.4rem;
+  transform: translateX(-50%) rotate(-3deg);
+  background: color-mix(in oklab, var(--color-accent) 75%, transparent);
+  opacity: 0.8;
+  border-radius: 2px;
+}
+.review-chapter {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.review-photo {
+  width: 4.75rem;
+  height: 4.75rem;
+  margin: 0.85rem 0 0.9rem;
+  display: grid;
+  place-items: center;
+  border-radius: 48% 52% 44% 56%/52% 44% 56% 48%;
+  transform: rotate(-4deg);
+  overflow: hidden;
+  background: var(--color-secondary);
+  border: 3px solid var(--color-card);
+  box-shadow: 0 8px 18px -10px oklch(0 0 0 / 0.4);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-foreground);
+}
+.review-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.review-stars {
+  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+}
+.review-stars-empty {
+  color: var(--color-border);
+}
+.review-quote {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--color-foreground);
+}
+.review-name {
+  margin-top: 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.review-meta {
+  margin-top: 0.15rem;
+  font-size: 0.82rem;
+  color: var(--color-muted-foreground);
+}
+.review-placeholder {
+  margin-top: 0.7rem;
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-accent) 14%, transparent);
+  color: var(--color-accent);
+}
+.review-journey-controls {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-card) 86%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--color-foreground);
+  max-width: calc(100vw - 2rem);
+}
+.review-journey-controls button {
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+.review-journey-controls button:hover:not(:disabled) {
+  background: var(--color-secondary);
+}
+.review-journey-controls button:disabled {
+  opacity: 0.35;
+}
+.review-stop-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding-inline: 0.35rem;
+}
+.review-stop-dots button {
+  width: 0.55rem;
+  height: 0.55rem;
+  padding: 0;
+  border-radius: 999px;
+  background: var(--color-border);
+  border: 0;
+}
+.review-stop-dots button.active {
+  background: var(--color-accent);
+  transform: scale(1.25);
+}
+.review-reduced {
+  max-width: 48rem;
+  margin: auto;
+  padding: 5rem 1.5rem;
+}
+.review-reduced > div {
+  margin-top: 3rem;
+  display: grid;
+  gap: 2rem;
+}
+.review-final-cta {
+  text-align: center;
+  padding: 7rem 1.5rem;
+}
+.review-final-cta > p:not(.eyebrow) {
+  max-width: 32rem;
+  margin: 1.5rem auto;
+  color: var(--color-muted-foreground);
+  font-size: 1.1rem;
+}
+.review-final-cta > div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 767px) {
+  .review-hero {
+    min-height: 84vh;
+    padding-top: 5rem;
+  }
+  .review-journey-title {
+    font-size: clamp(1rem, 5.4vw, 1.4rem);
+    top: 2.5%;
+  }
+  .review-card {
+    padding: 1.1rem 1.15rem 1.2rem;
+  }
+  .review-photo {
+    width: 3.9rem;
+    height: 3.9rem;
+    margin: 0.6rem 0 0.65rem;
+    font-size: 1.15rem;
+  }
+  .review-quote {
+    font-size: 0.9rem;
+  }
+  .review-name {
+    margin-top: 0.6rem;
+    font-size: 0.98rem;
+  }
+  .review-journey-controls {
+    bottom: 5.5rem;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+  }
+  .review-journey-controls button {
+    padding: 0.3rem 0.55rem;
+  }
+  .review-stop-dots {
+    gap: 0.3rem;
+    padding-inline: 0.15rem;
+  }
+  .review-stop-dots button {
+    width: 0.45rem;
+    height: 0.45rem;
+  }
+  .review-hero-accent-1 {
+    left: 4%;
+    top: 18%;
+  }
+  .review-hero-accent-2 {
+    right: 4%;
+    top: 25%;
+  }
+  .review-hero-accent-3 {
+    left: 8%;
+    bottom: 15%;
+  }
+}

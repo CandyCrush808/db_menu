@@ -1,0 +1,22 @@
+import { Link } from "@tanstack/react-router";
+export function ReviewFinalCTA() {
+  return (
+    <section className="review-final-cta">
+      <p className="eyebrow">Journey Complete</p>
+      <h2 className="review-display-lg">
+        THANK YOU,
+        <br />
+        BELLY LOVERS.
+      </h2>
+      <p>Your reviews keep us cooking.</p>
+      <div>
+        <Link to="/#menu" className="btn-primary">
+          Explore Menu
+        </Link>
+        <Link to="/#book-table" className="btn-ghost">
+          Book A Table
+        </Link>
+      </div>
+    </section>
+  );
+}

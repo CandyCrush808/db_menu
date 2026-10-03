@@ -1,4 +1,4 @@
-import { Home, UtensilsCrossed, Calendar, ShoppingBag } from "lucide-react";
+import { Home, UtensilsCrossed, Calendar, ShoppingBag, MapPin } from "lucide-react";
 import { useDeli } from "@/lib/deli-store";
 
 export function BottomNav() {
@@ -13,11 +13,11 @@ export function BottomNav() {
       className="fixed inset-x-0 bottom-0 z-40 border-t border-border/80 bg-card/95 backdrop-blur-md md:hidden shadow-lift"
     >
       <div className="mx-auto flex max-w-[600px] items-center justify-around">
-        <a href="#home" className={itemClass}>
+        <a href="/" className={itemClass}>
           <Home className="size-5" strokeWidth={1.6} />
           <span>Home</span>
         </a>
-        <a href="#menu" className={itemClass}>
+        <a href="/#menu" className={itemClass}>
           <UtensilsCrossed className="size-5" strokeWidth={1.6} />
           <span>Menu</span>
         </a>
@@ -39,6 +39,10 @@ export function BottomNav() {
           )}
           <span>Cart</span>
         </button>
+        <a href="/#contact" className={itemClass}>
+          <MapPin className="size-5" strokeWidth={1.6} />
+          <span>Visit</span>
+        </a>
       </div>
     </nav>
   );

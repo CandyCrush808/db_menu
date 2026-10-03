@@ -1,0 +1,30 @@
+export const PATH_VIEWBOX = { desktop: { w: 1200, h: 760 }, mobile: { w: 420, h: 880 } };
+export const JOURNEY_PATH = {
+  desktop:
+    "M -20 470 C 150 505 240 560 350 555 C 470 550 520 470 545 375 C 570 280 640 210 760 205 C 880 200 950 255 985 350 C 1015 430 1090 465 1220 430",
+  mobile:
+    "M 208 120 C 220 200 172 255 184 335 C 196 415 258 452 252 532 C 246 612 162 638 168 712 C 174 778 224 800 208 860",
+};
+type Props = {
+  variant: "desktop" | "mobile";
+  pathId: string;
+  progressId: string;
+  stopsGroupId: string;
+};
+export function ReviewPath({ variant, pathId, progressId, stopsGroupId }: Props) {
+  const d = JOURNEY_PATH[variant],
+    vb = PATH_VIEWBOX[variant];
+  return (
+    <svg
+      viewBox={`0 0 ${vb.w} ${vb.h}`}
+      className="absolute inset-0 h-full w-full"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path d={d} fill="none" className="review-path-guide" />
+      <path id={progressId} d={d} fill="none" className="review-path-progress" />
+      <g id={stopsGroupId} />
+      <path id={pathId} d={d} fill="none" stroke="none" />
+    </svg>
+  );
+}
